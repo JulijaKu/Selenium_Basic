@@ -39,18 +39,69 @@ public class Sample7Task {
     @Test
     public void selectCheckBox() throws Exception {
 //         TODO:
+//       ctick  "Option 2"
+        List<WebElement> checkBoxes = driver.findElements(By.cssSelector(".w3-check[type='checkbox']"));
+
+        for (WebElement checkBox : checkBoxes) {
+            assertFalse(checkBox.isSelected()); // checkboxes are NOT selected
+            checkBox.click();
+            assertTrue(checkBox.isSelected()); // checkboxes are selected
+            checkBox.click();
+            assertFalse(checkBox.isSelected()); // checkboxes are NOT selected
+        }
+
+
+        (selectOption();
+        WebElement option2 = driver.findElement(By.cssSelector(".w3-check[value='Option 2'][type='checkbox']"));
+        option2.click();
+        assertTrue(option2.isSelected());
+
+        Thread.sleep(3000);
+
+        WebElement option3 = driver.findElement(By.cssSelector(".w3-check[value='Option 3'][type='checkbox']"));
+        option3.click();
+        assertTrue(option3.isSelected());
+        Thread.sleep(3000);
+
+
+    }
 //        check that none of the checkboxes are ticked
-//        tick  "Option 2"
+    //   ctick  "Option 2"
 //        check that "Option 1" and "Option 3" are not ticked, but "Option 2" is ticked
 //        tick  "Option 3"
 //        click result
 //        check that text 'You selected value(s): Option 2, Option 3' is being displayed
-    }
+
 
 
     @Test
     public void selectRadioButton() throws Exception {
 //         TODO:
+        List<WebElement> radioButtons = driver.findElements(By.cssSelector(".w3-check[type='radio']"));
+
+        for (WebElement radioButton : radioButtons) {
+            assertFalse(radioButton.isSelected()); // radio are NOT selected
+            radioButton.click();
+            assertTrue(radioButton.isSelected()); // radio are selected
+        }
+
+
+        WebElement option3 = driver.findElement(By.cssSelector(".w3-check[value='Option 3'][type='radio'"));
+        option3.click();
+        assertTrue(option3.isSelected());
+
+//        WebElement option1 = driver.findElement(By.cssSelector(".w3-check[value='Option 1'][type='radio'"));
+//        assertFalse(option1.isSelected());
+//
+//        WebElement option2 = driver.findElement(By.cssSelector(".w3-check[value='Option 2'][type='radio'"));
+//        assertFalse(option2.isSelected());
+
+        WebElement option1 = driver.findElement(By.cssSelector(".w3-check[value='Option 1'][type='radio'"));
+        option1.click();
+        assertTrue(option1.isSelected());
+
+
+        }
 //        check that none of the radio are selected
 //        select  "Option 3"
 //        check that "Option 1" and "Option 2' are not select, but "Option 3" is selected
@@ -58,16 +109,28 @@ public class Sample7Task {
 //        check that "Option 2" and "Option 3' are not select, but "Option 1" is selected
 //        click result
 //        check that 'You selected option: Option 1' text is being displayed
-    }
+
 
     @Test
     public void selectOption() throws Exception {
-//        select "Option 3" in Select
-//        check that selected option is "Option 3"
-//        select "Option 2" in Select
-//        check that selected option is "Option 2"
-//        click result
-//        check that 'You selected option: Option 2' text is being displayed
+
+        Select dropdown = new Select(driver.findElement(By.id("vfb-12")));
+        assertEquals("Choose your option", dropdown.getFirstSelectedOption().getText());
+        dropdown.selectByIndex(3);
+        assertEquals("Option 3", dropdown.getFirstSelectedOption().getText());
+
+        dropdown.selectByIndex(2);
+        assertEquals("Option 2", dropdown.getFirstSelectedOption().getText());
+
+        driver.findElement(By.id("result_button_select")).click();
+
+//       select "Option 3" in Select
+//       check that selected option is "Option 3"
+//       select "Option 2" in Select
+//       check that selected option is "Option 2"
+//       click result
+//       check that 'You selected option: Option 2' text is being displayed
+
     }
 
     @Test

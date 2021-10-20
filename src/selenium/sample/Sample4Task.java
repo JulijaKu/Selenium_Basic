@@ -38,8 +38,15 @@ public class Sample4Task {
     public void enterNumber() throws Exception {
 //         TODO:
 //        enter a number under "Number"
-//        check that button is not clickable "Clear Result"
+        WebElement textArea = driver.findElement(By.id("number"));
+        String originalTextInTextArea = "5";
+        //        check that button is not clickable "Clear Result"
+        WebElement hideButton = driver.findElement(By.id("clear_result_button_number"));
+        assertFalse(hideButton.isEnabled());
 //        check that text is not displayed
+        WebElement showButton = driver.findElement(By.id("result_button_number"));
+        assertTrue(showButton.isEnabled());
+
 //        click on "Result" button
 //        check that text is displayed
 //        check that the correct Text appears ("You entered number: "NUMBER YOU ENTERED"")
