@@ -39,7 +39,7 @@ public class Sample7Task {
     @Test
     public void selectCheckBox() throws Exception {
 //         TODO:
-//       ctick  "Option 2"
+//       click  "Option 2"
         List<WebElement> checkBoxes = driver.findElements(By.cssSelector(".w3-check[type='checkbox']"));
 
         for (WebElement checkBox : checkBoxes) {
@@ -51,7 +51,7 @@ public class Sample7Task {
         }
 
 
-        (selectOption();
+
         WebElement option2 = driver.findElement(By.cssSelector(".w3-check[value='Option 2'][type='checkbox']"));
         option2.click();
         assertTrue(option2.isSelected());
